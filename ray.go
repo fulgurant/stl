@@ -7,14 +7,14 @@ import (
 var epsilon = math.Nextafter(1, 2) - 1
 
 type Ray struct {
-	origin Vec3
-	vector Vec3
+	Origin    Vec3
+	Direction Vec3
 }
 
 func (ray Ray) IntersectsTriangle(triangle Triangle) (Vec3, bool) {
 	edge1 := triangle.Vertices[1].Diff(triangle.Vertices[0])
 	edge2 := triangle.Vertices[2].Diff(triangle.Vertices[0])
-	rayCrossE2 := ray.vector.Cross(edge2)
+	rayCrossE2 := ray.Direction.Cross(edge2)
 	det := edge1.Dot(rayCrossE2)
 
 	if det > -epsilon && det < epsilon {
@@ -24,7 +24,7 @@ func (ray Ray) IntersectsTriangle(triangle Triangle) (Vec3, bool) {
 	}
 
 	invDet := 1.0 / det
-	s := ray.origin.Diff(triangle.Vertices[0])
+	s := ray.Origin.Diff(triangle.Vertices[0])
 	u := invDet * s.Dot(rayCrossE2)
 
 	if u < 0.0 || u > 1.0 {
@@ -33,7 +33,7 @@ func (ray Ray) IntersectsTriangle(triangle Triangle) (Vec3, bool) {
 	}
 
 	sCrossE1 := s.Cross(edge1)
-	v := invDet * ray.vector.Dot(sCrossE1)
+	v := invDet * ray.Direction.Dot(sCrossE1)
 
 	if v < 0 || u+v > 1 {
 		println("3")
@@ -44,7 +44,7 @@ func (ray Ray) IntersectsTriangle(triangle Triangle) (Vec3, bool) {
 
 	if t > epsilon {
 		println("4")
-		outIntersectionPoint := ray.origin.Add(ray.vector.MultScalar(t))
+		outIntersectionPoint := ray.Origin.Add(ray.Direction.MultScalar(t))
 		return outIntersectionPoint, true
 	}
 
