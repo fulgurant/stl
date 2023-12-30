@@ -212,7 +212,7 @@ func (s *Solid) MoveToPositive() {
 		}
 	}
 	// only apply vector if non-zero
-	if translationVector != vec3Zero {
+	if translationVector != Vec3Zero {
 		s.Translate(translationVector)
 	}
 }
