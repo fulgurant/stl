@@ -5,7 +5,8 @@ package stl
 // Mat4 represents a 4x4 Matrix of float64 used for 3D transformations.
 // The 4th column can be used for moving the solid on the axes.
 // Accessing matrix elements goes like this:
-//    matrix[row][column]
+//
+//	matrix[row][column]
 type Mat4 [4]Vec4
 
 // Vec4 is used to construct Mat4
@@ -46,8 +47,8 @@ var Mat4Identity = Mat4{
 // not calculated, as is usual in 3D transformations.
 func (m *Mat4) MultVec3(v Vec3) Vec3 {
 	var result Vec3
-	result[0] = float32(m[0][0]*float64(v[0]) + m[0][1]*float64(v[1]) + m[0][2]*float64(v[2]) + m[0][3])
-	result[1] = float32(m[1][0]*float64(v[0]) + m[1][1]*float64(v[1]) + m[1][2]*float64(v[2]) + m[1][3])
-	result[2] = float32(m[2][0]*float64(v[0]) + m[2][1]*float64(v[1]) + m[2][2]*float64(v[2]) + m[2][3])
+	result[0] = float64(m[0][0]*float64(v[0]) + m[0][1]*float64(v[1]) + m[0][2]*float64(v[2]) + m[0][3])
+	result[1] = float64(m[1][0]*float64(v[0]) + m[1][1]*float64(v[1]) + m[1][2]*float64(v[2]) + m[1][3])
+	result[2] = float64(m[2][0]*float64(v[0]) + m[2][1]*float64(v[1]) + m[2][2]*float64(v[2]) + m[2][3])
 	return result
 }

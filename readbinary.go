@@ -69,15 +69,16 @@ func readTriangleBinary(r io.Reader, t *Triangle) error {
 }
 
 func readBinaryPoint(buf []byte, offset *int, p *Vec3) {
-	p[0] = readBinaryFloat32(buf, offset)
-	p[1] = readBinaryFloat32(buf, offset)
-	p[2] = readBinaryFloat32(buf, offset)
+	p[0] = readBinaryFloat64(buf, offset)
+	p[1] = readBinaryFloat64(buf, offset)
+	p[2] = readBinaryFloat64(buf, offset)
 }
 
-func readBinaryFloat32(buf []byte, offset *int) float32 {
+func readBinaryFloat64(buf []byte, offset *int) float64 {
 	v := binary.LittleEndian.Uint32(buf[*offset : (*offset)+4])
 	*offset += 4
-	return math.Float32frombits(v)
+	f32 := math.Float32frombits(v)
+	return float64(f32)
 }
 
 func readBinaryUint16(buf []byte, offset *int) uint16 {

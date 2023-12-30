@@ -161,12 +161,12 @@ func (p *parser) parseFacet(t *Triangle) bool {
 }
 
 func (p *parser) parsePoint(pt *Vec3) bool {
-	return p.parseFloat32(&(pt[0])) &&
-		p.parseFloat32(&(pt[1])) &&
-		p.parseFloat32(&(pt[2]))
+	return p.parseFloat64(&(pt[0])) &&
+		p.parseFloat64(&(pt[1])) &&
+		p.parseFloat64(&(pt[2]))
 }
 
-func (p *parser) parseFloat32(f *float32) bool {
+func (p *parser) parseFloat64(f *float64) bool {
 	if p.eof {
 		return false
 	}
@@ -176,7 +176,7 @@ func (p *parser) parseFloat32(f *float32) bool {
 		return false
 	}
 
-	*f = float32(f64)
+	*f = f64
 	p.nextWord()
 	return true
 }

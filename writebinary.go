@@ -49,13 +49,14 @@ func writeTriangleBinary(w io.Writer, t *Triangle) error {
 }
 
 func encodePoint(buf []byte, offset *int, pt *Vec3) {
-	encodeFloat32(buf, offset, pt[0])
-	encodeFloat32(buf, offset, pt[1])
-	encodeFloat32(buf, offset, pt[2])
+	encodeFloat64(buf, offset, pt[0])
+	encodeFloat64(buf, offset, pt[1])
+	encodeFloat64(buf, offset, pt[2])
 }
 
-func encodeFloat32(buf []byte, offset *int, f float32) {
-	u32 := math.Float32bits(f)
+func encodeFloat64(buf []byte, offset *int, f float64) {
+	f32 := float32(f)
+	u32 := math.Float32bits(f32)
 	binary.LittleEndian.PutUint32(buf[*offset:(*offset)+4], u32)
 	*offset += 4
 }

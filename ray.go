@@ -18,7 +18,6 @@ func (ray Ray) IntersectsTriangle(triangle Triangle) (Vec3, bool) {
 	det := edge1.Dot(rayCrossE2)
 
 	if det > -epsilon && det < epsilon {
-		println("ray is parallel to triangle")
 		// ray is parallel to triangle
 		return Vec3Zero, false
 	}
@@ -28,7 +27,6 @@ func (ray Ray) IntersectsTriangle(triangle Triangle) (Vec3, bool) {
 	u := invDet * s.Dot(rayCrossE2)
 
 	if u < 0.0 || u > 1.0 {
-		println("2")
 		return Vec3Zero, false
 	}
 
@@ -36,18 +34,15 @@ func (ray Ray) IntersectsTriangle(triangle Triangle) (Vec3, bool) {
 	v := invDet * ray.Direction.Dot(sCrossE1)
 
 	if v < 0 || u+v > 1 {
-		println("3")
 		return Vec3Zero, false
 	}
 
 	t := invDet * edge2.Dot(sCrossE1)
 
 	if t > epsilon {
-		println("4")
 		outIntersectionPoint := ray.Origin.Add(ray.Direction.MultScalar(t))
 		return outIntersectionPoint, true
 	}
 
-	println("5")
 	return Vec3Zero, false
 }

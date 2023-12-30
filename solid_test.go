@@ -41,8 +41,8 @@ func TestStretch(t *testing.T) {
 func TestTranslate(t *testing.T) {
 	sOrig := makeTestSolid()
 	s := makeTestSolid()
-	s.Translate([3]float32{1, 2, 4})
-	s.Translate([3]float32{-1, -2, -4})
+	s.Translate([3]float64{1, 2, 4})
+	s.Translate([3]float64{-1, -2, -4})
 	if !sOrig.sameOrderAlmostEqual(s) {
 		t.Error("Not equal after translation and inverse translation")
 		t.Log("Expected:\n", sOrig)

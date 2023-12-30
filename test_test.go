@@ -88,7 +88,7 @@ func (s *Solid) sameOrderAlmostEqual(o *Solid) bool {
 	return true
 }
 
-func (t *Triangle) sameOrderAlmostEqual(o *Triangle, tol float32) bool {
+func (t *Triangle) sameOrderAlmostEqual(o *Triangle, tol float64) bool {
 	return t.Normal.AlmostEqual(o.Normal, tol) &&
 		t.Vertices[0].AlmostEqual(o.Vertices[0], tol) &&
 		t.Vertices[1].AlmostEqual(o.Vertices[1], tol) &&

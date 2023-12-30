@@ -135,7 +135,7 @@ func (s *Solid) Scale(factor float64) {
 		t := &s.Triangles[i]
 		for v := 0; v < 3; v++ {
 			for d := 0; d < 3; d++ {
-				t.Vertices[v][d] = float32(factor * float64(t.Vertices[v][d]))
+				t.Vertices[v][d] = factor * t.Vertices[v][d]
 			}
 		}
 	}
@@ -147,7 +147,7 @@ func (s *Solid) Stretch(vec Vec3) {
 		t := &s.Triangles[i]
 		for v := 0; v < 3; v++ {
 			for d := 0; d < 3; d++ {
-				t.Vertices[v][d] = float32(float64(vec[d]) * float64(t.Vertices[v][d]))
+				t.Vertices[v][d] = vec[d] * t.Vertices[v][d]
 			}
 		}
 		t.recalculateNormal()
@@ -221,7 +221,7 @@ func (s *Solid) MoveToPositive() {
 func (s *Solid) scaleDim(factor float64, dim int) {
 	for i := 0; i < len(s.Triangles); i++ {
 		for v := 0; v < 3; v++ {
-			s.Triangles[i].Vertices[v][dim] = float32(factor * float64(s.Triangles[i].Vertices[v][dim]))
+			s.Triangles[i].Vertices[v][dim] = factor * s.Triangles[i].Vertices[v][dim]
 		}
 	}
 }

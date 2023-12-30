@@ -28,24 +28,24 @@ func almostEqual64(a, b, tol float64) bool {
 	return math.Abs(a-b) <= tol
 }
 
-func min(a, b float32) float32 {
+func min(a, b float64) float64 {
 	if a < b {
 		return a
 	}
 	return b
 }
 
-func min4(a, b, c, d float32) float32 {
+func min4(a, b, c, d float64) float64 {
 	return min(min(a, b), min(c, d))
 }
 
-func max(a, b float32) float32 {
+func max(a, b float64) float64 {
 	if a > b {
 		return a
 	}
 	return b
 }
 
-func max4(a, b, c, d float32) float32 {
+func max4(a, b, c, d float64) float64 {
 	return max(max(a, b), max(c, d))
 }

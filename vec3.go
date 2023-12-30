@@ -7,7 +7,7 @@ import (
 )
 
 // Vec3 represents a 3D vector, used in Triangle for normal vector and vertices.
-type Vec3 [3]float32
+type Vec3 [3]float64
 
 // Vec3Zero is the zero vector
 var Vec3Zero = Vec3{0, 0, 0}
@@ -24,17 +24,17 @@ func (vec Vec3) UnitVec3() Vec3 {
 		return vec
 	}
 
-	return Vec3{float32(float64(vec[0]) / l), float32(float64(vec[1]) / l), float32(float64(vec[2]) / l)}
+	return Vec3{vec[0] / l, vec[1] / l, vec[2] / l}
 }
 
 // MultScalar multiplies vec by scalar.
 func (vec Vec3) MultScalar(scalar float64) Vec3 {
-	return Vec3{float32(float64(vec[0]) * scalar), float32(float64(vec[1]) * scalar), float32(float64(vec[2]) * scalar)}
+	return Vec3{vec[0] * scalar, vec[1] * scalar, vec[2] * scalar}
 }
 
 // AlmostEqual returns true if vec and o are equal allowing for numerical error tol.
-func (vec Vec3) AlmostEqual(o Vec3, tol float32) bool {
-	return almostEqual32(vec[0], o[0], tol) && almostEqual32(vec[1], o[1], tol) && almostEqual32(vec[2], o[2], tol)
+func (vec Vec3) AlmostEqual(o Vec3, tol float64) bool {
+	return almostEqual64(vec[0], o[0], tol) && almostEqual64(vec[1], o[1], tol) && almostEqual64(vec[2], o[2], tol)
 }
 
 // Add returns the sum of vectors vec and o.
@@ -66,9 +66,7 @@ func (vec Vec3) Cross(o Vec3) Vec3 {
 
 // Dot returns the Dot product between vec and o.
 func (vec Vec3) Dot(o Vec3) float64 {
-	return float64(vec[0])*float64(o[0]) +
-		float64(vec[1])*float64(o[1]) +
-		float64(vec[2])*float64(o[2])
+	return vec[0]*o[0] + vec[1]*o[1] + vec[2]*o[2]
 }
 
 // Angle between vec and o in radians, without sign, between 0 and Pi.

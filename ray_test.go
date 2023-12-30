@@ -98,7 +98,7 @@ func TestRayIntercectsTriangle(t *testing.T) {
 				t.Fatalf("expected intercection %v, but received %v", testCase.intercept, i)
 			}
 
-			if i && !testCase.interceptPoint.AlmostEqual(p, float32(epsilon)) {
+			if i && !testCase.interceptPoint.AlmostEqual(p, float64(epsilon)) {
 				t.Fatalf("expected intercection point %v, but received %v", testCase.interceptPoint, p)
 			}
 		})
