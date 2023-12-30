@@ -1,3 +1,3 @@
-module github.com/hschendel/stl
+module github.com/fulgurant/stl
 
-go 1.14
+go 1.20
